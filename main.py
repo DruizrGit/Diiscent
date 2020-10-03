@@ -69,6 +69,8 @@ class MainPage(tk.Frame):
         self.dark_image = ImageTk.PhotoImage(Image.open("Images/DarkTheme.jpg").resize((controller.width,controller.height)))
         
         # Menubar
+        self.theme_init = 0
+        self.theme_mode = 0
         self.theme_var = tk.Variable() 
         self.show_menubar(controller)
         
@@ -247,10 +249,12 @@ class MainPage(tk.Frame):
         self.menubar = tk.Menu(controller)
         
         self.viewtab = tk.Menu(self.menubar, tearoff = 0)
-        self.viewtab.add_checkbutton(label = "Woodland Theme", onvalue = 0, var = self.theme_var, command = self.toggle_theme)
-        self.viewtab.add_checkbutton(label = "Dark Theme", onvalue = 1, var = self.theme_var, command = self.toggle_theme)
+        self.viewtab.add_checkbutton(label = "Woodland Theme", onvalue = 0, offvalue = 0, var = self.theme_var, command = self.toggle_theme)
+        self.viewtab.add_checkbutton(label = "Dark Theme", onvalue = 1, offvalue= 1, var = self.theme_var, command = self.toggle_theme)
         self.viewtab.invoke(self.viewtab.index("Woodland Theme"))
         self.menubar.add_cascade(label = "View", menu = self.viewtab)
+        
+        self.theme_init = 1
         
         self.helptab = tk.Menu(self.menubar, tearoff = 0)
         self.menubar.add_cascade(label = "Help", menu = self.helptab)
@@ -260,12 +264,23 @@ class MainPage(tk.Frame):
         
     def toggle_theme(self):
         
-        theme = self.theme_var.get()
+        prev_theme = self.theme_mode
+        current_theme = int(self.theme_var.get())
         
-        if theme == 0:
-            self.canvas.create_image(0,0, image = self.woodland_image, anchor = tk.NW)
+        if self.theme_init == 1:
+            if prev_theme == current_theme:
+                pass
+            elif current_theme == 0:
+                self.canvas.create_image(0,0, image = self.woodland_image, anchor = tk.NW)
+            else:
+                self.canvas.create_image(0,0, image = self.dark_image, anchor = tk.NW)
         else:
-            self.canvas.create_image(0,0, image = self.dark_image, anchor = tk.NW)
+            if current_theme == 0:
+                self.canvas.create_image(0,0, image = self.woodland_image, anchor = tk.NW)
+            else:
+                self.canvas.create_image(0,0, image = self.dark_image, anchor = tk.NW)
+                
+        self.theme_mode = int(self.theme_var.get())
         
     def show_dice_breakdown(self, controller):
         
@@ -506,8 +521,8 @@ class MainPage(tk.Frame):
             
         graph.set_xlabel('Shields (x)')
         graph.set_ylabel('Probability (%)')
+        graph.set_xticks(x_axis)
         graph.set_xticklabels(labels = values, size = xtick_text_size)
-        graph.set_yticklabels(fontsize = 10)
         graph.set_title('Probability of Rolling ' + str_kind + ' x Shield', y = 1.08, size = 12)
         graph.set_ylim(0,100)
         
