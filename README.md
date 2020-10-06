@@ -6,6 +6,9 @@ In Descent, you use dice to determine the outcome of in-game events such as dama
 
 The GUI displays matplotlib generated probability graphs for the selected 'attack dice' and 'defense dice' pools. 
 
+## Diiscent GUI Example:
+<img width = "945" src = "https://github.com/DruizrGit/Diiscent/blob/master/Images/DiiscentExample.png">
+
 ### Version: 1.0
 
 Tabs:
@@ -20,8 +23,4 @@ Tabs:
     VIEW: Select one of two available themes: Woodland or Dark
   </li>
 </ul>
-
-Working Example:
-
-<img width = "945" src = "https://github.com/DruizrGit/Diiscent/blob/master/Images/DiiscentExample.png">
 
