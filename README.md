@@ -23,5 +23,5 @@ Tabs:
 
 Working Example:
 
-<img src = "Images/DiiscentExample.png", raw = True>
+<img width = "945" src = "https://github.com/DruizrGit/Diiscent/blob/master/Images/DiiscentExample.png">
 
