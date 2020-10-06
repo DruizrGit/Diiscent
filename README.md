@@ -13,14 +13,14 @@ The GUI displays matplotlib generated probability graphs for the selected 'attac
 
 Tabs:
 <ul>
+  <li>
+    VIEW: Select one of two available themes: Woodland or Dark
+  </li>
   <li> 
     HELP: 
     <ul>
       <li> Dice Breakdown: Opens a new window displaying every side of every dice in Descent
     </ul>
-  </li>
-  <li>
-    VIEW: Select one of two available themes: Woodland or Dark
   </li>
 </ul>
 
