@@ -20,5 +20,8 @@ Tabs:
     VIEW: Select one of two available themes: Woodland or Dark
   </li>
 </ul>
-  
+
+Working Example:
+
+<img src = "Images/DiiscentExample.png", raw = True>
 
