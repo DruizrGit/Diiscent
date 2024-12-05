@@ -5,6 +5,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 from PIL import Image, ImageTk
 from matplotlib import rcParams
+import sys
 import tkinter as tk
 from tkinter import ttk
 
@@ -29,7 +30,11 @@ class WinMain(tk.Tk):
         self.height = 760
         self.width = 1000
         tk.Tk.wm_title(self, "Diiscent")
-        tk.Tk.iconbitmap(self, "Images/descent_icon.ico")
+        if sys.platform.startswith("win"):
+            tk.Tk.iconbitmap(self, bitmap="Images/descent_icon.ico")
+        else:
+            self.tk.call('wm', 'iconphoto', self._w, tk.PhotoImage(file="Images/descent_icon.png"))
+
         tk.Tk.geometry(self, str(self.width) + "x" + str(self.height))
         tk.Tk.resizable(self, width=False, height=False)  # Can't adjust window size
 
@@ -441,7 +446,11 @@ class MainPage(tk.Frame):
 
         win = tk.Toplevel(controller)
         win.title("Dice Breakdown")
-        win.iconbitmap("Images/descent_icon.ico")
+        if sys.platform.startswith("win"):
+            win.iconbitmap("Images/descent_icon.ico")
+        else:
+            win.iconphoto(True, tk.PhotoImage(file="Images/descent_icon.png"))
+
         win.resizable(width=False, height=False)
 
         self.dicebreakdown_image = ImageTk.PhotoImage(
